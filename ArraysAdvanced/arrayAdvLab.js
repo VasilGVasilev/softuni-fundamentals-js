@@ -28,6 +28,7 @@
 // .map(el => el++) - creates a new array by applying a function to every element
 // let arr = ['one', 'two', 'three', 'four']
 // let lengths = arr.map(el => el.length) // [3,3,5,4]
+// higher order function => function that accepts another function as an argument
 
 
 
@@ -201,9 +202,11 @@
 
 
 
-// never convert string into a number with Number()
+// NB never convert string into a number with Number()
 // use .map(el => number(el))
 // remember to convert string into array with split(' ') before using map
+
+
 // function arrayMani(input){
     
 //     let seq = input[0].split(' ').map(el => Number(el));
