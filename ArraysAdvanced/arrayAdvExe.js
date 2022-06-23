@@ -220,3 +220,143 @@
 // searchForN([7, 1, 5, 8, 2, 7],
 //     [3, 1, 5]
 //     )
+
+
+
+
+// function arrManipul(nums, commands){
+    
+//     for (let i = 0; i < commands.length; i++){
+        
+//         let com = commands[i].split(' ');
+//         if (com[0] === 'print'){
+//             break;
+//         }
+//         if (com[0] === 'add'){
+            
+//             let index = Number(com[1]);
+//             let added = Number(com[2]);
+//             nums.splice(index, 0, added);
+//         }
+//         if (com[0] === 'addMany'){
+//             let index = Number(com[1]);
+//             let added = com.splice(2);
+//             for (let k = 0; k < added.length; k++){
+//                 nums.splice((index + k), 0, Number(added[k]))
+//             }
+//         }
+
+//         if (com[0] === 'remove'){
+//             let index = Number(com[1]);
+//             nums.splice(index, 1);
+//         }
+
+//         if (com[0] === 'contains'){
+//             let element = Number(com[1]);
+//             let instance = nums.indexOf(element);
+//             console.log(instance);
+//         }
+
+//         if (com[0] === 'shift'){
+//             let numOfPositions = Number(com[1]);
+//             for (p = 0; p < numOfPositions; p++){
+//                 let shifted = nums.shift();
+//                 nums.push(shifted);
+//             }
+//         }
+
+//         if (com[0] === 'sumPairs'){
+//             let sumedPairs = [];
+//             // add a 0 if num.length is odd so that num[s + 1] is not outside of the array thus making it undefined 
+//             if (nums.length % 2 !== 0){
+//                 nums.push(0);
+//             }
+//             for (s = 0; s < nums.length; s = s + 2){
+//                 let firstNum = nums[s];
+//                 let secondNum = nums[s + 1];
+//                 let sum = firstNum + secondNum;
+//                 sumedPairs.push(sum);
+//             }
+//             nums = sumedPairs
+//         }
+
+        
+//     }
+   
+//     console.log(`[ ${nums.join(', ')} ]`);   
+// }
+
+// arrManipul([1, 2, 3, 4, 5],
+//     ["addMany 5 9 8 7 6 5", "contains 15", "remove 3", "shift 1", "print"]
+//     );
+
+
+// 90/100
+// function gladiator(arr){
+//     let inventory = arr.shift().split(' ');
+    
+//     for(let i = 0; i < arr.length; i++) {
+//         let commandAndEquip = arr[i].split(' ');
+//         let command = commandAndEquip.shift();
+//         let equipment = commandAndEquip.shift();
+//         // switch case better for known element being a string
+//         switch(command){
+//             case 'Buy':
+//                 inventory.push(equipment);
+//                 break;
+    
+//             case 'Trash':
+//                 let trash = inventory.includes(equipment);
+//                 if(trash){
+//                     let indexOfTrash = inventory.indexOf(equipment);
+//                     inventory.splice(indexOfTrash, 1);
+//                 }
+//                 break;
+            
+//             case 'Repair':
+  
+//                 let foundEquipment = inventory.includes(equipment);
+//                 if(foundEquipment){
+//                     let indexOfEquipment = inventory.indexOf(equipment);
+//                     inventory.splice(indexOfEquipment, 1);
+//                     inventory.push(equipment);
+//                 }
+                
+//                 break;
+            
+//             case 'Upgrade':
+                
+//                 let dash = equipment.indexOf('-');
+                
+//                 // get string before dash SWORD-Silver => SWORD
+//                 let equipmentSpliced = equipment.split('');
+//                 equipmentSpliced.splice(dash);
+//                 equipmentSpliced = equipmentSpliced.join('');
+
+//                 let upgadedEqipment = equipment.split('');
+//                 let update = upgadedEqipment.slice(dash + 1);
+//                 update = update.join('');
+                
+//                 let foundEquipmentToUp = inventory.includes(equipmentSpliced);
+//                 if (foundEquipmentToUp){
+//                     let indexOfEquipmentToUp = inventory.indexOf(equipmentSpliced);
+//                     let finalUpdate = equipmentSpliced + ':' + update;
+//                     inventory.splice(indexOfEquipmentToUp + 1, 0, finalUpdate);
+//                 }
+                
+//         }
+//     }
+//     console.log(inventory.join(' '));
+// }
+
+// gladiator(['SWORD Shield Spear',
+// 'Buy Bag',
+// 'Trash Shield',
+// 'Repair Spear',
+// 'Upgrade SWORD-Steel']
+// );
+
+
+
+
+
