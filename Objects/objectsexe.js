@@ -87,7 +87,7 @@
 
 // BETTER SOLUTION wit ownProperty()
 // function storeProvision(arr1, arr2){
-
+// !!!! you cannot use constructor function because you will need to dynamically set the key:value for each iteration of the for loop
 //     let storedProvision = {};
 
 //     // populate store object with initial provisions
@@ -216,6 +216,15 @@
 //     ]
 //     );
 
+// CONSLUDING REMARKS:
+// includes() is for string search in an array of strings
+// hasOwnProperty() is for Objects and searches for keys, but note that
+// Arrays are objects too in JS, so it can be used instead of includes()
+
+
+
+
+
 
 // BRAKCET notiation vs DOT notation
 // The main difference between dot 
@@ -231,4 +240,134 @@
 //     obj.hair = 'red'
 //     console.log(obj);
 // }
-// test();
+// test()
+
+
+// NB 'for...of' loop === forEach()
+// 'for...of' is used for iterabel collections => arrays and strings
+// 'for...in' is used for enumerable properties: Objects
+// 'for...of' is attached to [Symbol.iterator] /linked list logic/
+// 'for...in' is attached to keys
+
+
+// dont forget that vars in for loops are just
+// sandboxes that hold value just for the duration of the iteration
+// you create an object in the array that you use as a tempalte
+// to put into the heroes array to hold in as value for good
+
+// tricks: 
+// *instead of name = name, level = level => name, level
+// *instead of Number(num) => +num
+// function inventory(arr){
+//     let heroes = [];
+//     for (heroInfo of arr){
+//         let [name, level, items] = heroInfo.split(' / ');
+
+//         let currentHero = {
+//             name: name,
+//             level: Number(level),
+//             items: items
+//         };
+//         heroes.push(currentHero);
+//     }
+//     // sorting objects in an array by specific key:value -> level
+//     let sortedByLevel = heroes.sort((a,b)=>{
+//         return a.level - b.level
+//     })
+//    for(let el of sortedByLevel){
+//    console.log(`Hero: ${el.name}`);
+//    console.log(`level => ${el.level}`);
+//    console.log(`items => ${el.items}`);}
+
+// }
+
+// inventory([
+//     'Isacc / 25 / Apple, GravityGun',
+//     'Derek / 12 / BarrelVest, DestructionSword',
+//     'Hes / 1 / Desolator, Sentinel, Antara'
+//     ]
+//     );
+
+
+
+
+// function dictionary(arr){
+//     // create an object to store the objects from the array of objects
+//     let parsedToObj = {};
+//     for(let el of arr){
+//         let obj = JSON.parse(el);
+//         parsedToObj = Object.assign(parsedToObj, obj)
+//     }
+
+//     // create an array with obj keys and sort them
+//     let arrOfKeys = Object.keys(parsedToObj);
+//     let sortedArrOfKeys = arrOfKeys.sort((a,b)=>{
+//         return a.localeCompare(b);
+//     })    
+
+//     // use the array for object keys to store the values in the big object you first made
+//     for (let term of sortedArrOfKeys){
+//         let definition = parsedToObj[term];
+//         console.log(`Term: ${term} => Definition: ${definition}`);
+//     }
+// }
+
+// dictionary([
+//     '{"Coffee":"A hot drink made from the roasted and ground seeds (coffee beans) of a tropical shrub."}',
+//     '{"Bus":"A large motor vehicle carrying passengers by road, typically one serving the public on a fixed route and for a fare."}',
+//     '{"Boiler":"A fuel-burning apparatus or container for heating water."}',
+//     '{"Tape":"A narrow strip of material, typically used to hold or fasten something."}',
+//     '{"Microphone":"An instrument for converting sound waves into electrical energy variations which may then be amplified, transmitted, or recorded."}'
+//     ]
+//     )
+
+
+
+
+
+
+// class Vehicle{
+//     constructor(type, model, parts, fuel){
+//         this.type = type;
+//         this.model = model;
+//         this.parts = parts;
+//         this.fuel = fuel;
+//         this.parts.quality = this.parts.engine * this.parts.power;
+//     }
+//     drive(lostFuel){
+//         return this.fuel -= lostFuel;
+//     }
+// }
+
+// let parts = { engine: 6, power: 100 };
+// let vehicle = new Vehicle('a', 'b', parts, 200);
+// vehicle.drive(100);
+// console.log(vehicle.fuel);
+// console.log(vehicle.parts.quality);
+
+
+
+class Storage{
+    constructor(capacity){
+        this.capacity = capacity;
+    }
+    addProduct(){
+        this.capacity -= productQuant;
+    }
+    getProducts(){
+        
+    }
+}
+
+
+let productOne = {name: 'Cucamber', price: 1.50, quantity: 15};
+let productTwo = {name: 'Tomato', price: 0.90, quantity: 25};
+let productThree = {name: 'Bread', price: 1.10, quantity: 8};
+let storage = new Storage(50);
+storage.addProduct(productOne);
+storage.addProduct(productTwo);
+storage.addProduct(productThree);
+console.log(storage.getProducts());
+console.log(storage.capacity);
+console.log(storage.totalCost);
+
