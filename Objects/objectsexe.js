@@ -244,8 +244,8 @@
 
 
 // NB 'for...of' loop === forEach()
-// 'for...of' is used for iterabel collections => arrays and strings
-// 'for...in' is used for enumerable properties: Objects
+// 'for...of' is used for iterabel collections => arrays and strings /for els in one Arr/
+// 'for...in' is used for enumerable properties: Objects /for keys in one Obj/
 // 'for...of' is attached to [Symbol.iterator] /linked list logic/
 // 'for...in' is attached to keys
 
@@ -347,27 +347,97 @@
 
 
 
-class Storage{
-    constructor(capacity){
-        this.capacity = capacity;
-    }
-    addProduct(){
-        this.capacity -= productQuant;
-    }
-    getProducts(){
+// class Storage{
+//     constructor(capacity){
+//         this.capacity = capacity;
+//         this.storage = [];
+//         this.totalCost = 0;
+//     }
+//     addProduct(product){
+//         this.capacity -= product.quantity;
+//         this.totalCost += product.price * product.quantity;
+//         this.storage.push(product);
+
+//     }
+//     getProducts(storage){
+//         let m = this.storage.map((el)=>JSON.stringify(el)).join('\n');
+//         return m;
+//     }
+// }
+
+
+// let productOne = {name: 'Cucamber', price: 1.50, quantity: 15};
+// let productTwo = {name: 'Tomato', price: 0.90, quantity: 25};
+// let productThree = {name: 'Bread', price: 1.10, quantity: 8};
+// let storage = new Storage(50);
+// storage.addProduct(productOne);
+// storage.addProduct(productTwo);
+// storage.addProduct(productThree);
+// console.log(storage.getProducts());
+// console.log(storage.capacity);
+// console.log(storage.totalCost);
+
+
+
+
+// cannot sort log to be associated with capital letters
+// function catalogue(arr){
+//     let catKeys = [];
+//     let collectionOfObjs = {};
+//     for(let el of arr){
+//         let KeyData = el.split(' : ');
+//         collectionOfObjs[KeyData[0]] = Number(KeyData[1]);
+//     }
+//     let arrOfKeys = Object.keys(collectionOfObjs);
+//     let sortedKeys = arrOfKeys.sort((a,b)=>{
+//         return a.localeCompare(b);
+//     })
+    
+//     let arrOfLetters = sortedKeys.map((word)=>{
+//         return word[0].toString();
+//     })
+    
+
+//     let uniqueArray = [];
+//     function fil(arrOfLetters){
         
-    }
-}
+        
+//         // Loop through array values
+//         arrOfLetters.forEach((element)=>{
+//             if(!uniqueArray.includes(element)){
+//                 uniqueArray.push(element);
+//             }
+//         })
+//         console.log(arrOfLetters);
+        
+//         return uniqueArray;
+//     }
+
+//     fil(arrOfLetters);
 
 
-let productOne = {name: 'Cucamber', price: 1.50, quantity: 15};
-let productTwo = {name: 'Tomato', price: 0.90, quantity: 25};
-let productThree = {name: 'Bread', price: 1.10, quantity: 8};
-let storage = new Storage(50);
-storage.addProduct(productOne);
-storage.addProduct(productTwo);
-storage.addProduct(productThree);
-console.log(storage.getProducts());
-console.log(storage.capacity);
-console.log(storage.totalCost);
+//     for (let j = 0; j < uniqueArray.length; j++){
+//         console.log(uniqueArray[j]);
+//         if(uniqueArray[j] === arrOfLetters[j][0]){
+//             for (arrOfLetters[j] in sortedKeys){
+//                 console.log(`${arrOfLetters[j]} : ${sortedKeys[arrOfLetters[j]]}`);
+//             }
+//         }
+//     }
+//     console.log(uniqueArray);
+//     sortedKeys.forEach((e)=>{
+//         console.log(`${e} : ${collectionOfObjs[e]}`);
+//     })
+// }
 
+// catalogue([
+//     'Appricot : 20.4',
+//     'Fridge : 1500',
+//     'TV : 1499',
+//     'Deodorant : 10',
+//     'Boiler : 300',
+//     'Apple : 1.25',
+//     'Anti-Bug Spray : 15',
+//     'T-Shirt : 10'
+//     ]
+//     );
