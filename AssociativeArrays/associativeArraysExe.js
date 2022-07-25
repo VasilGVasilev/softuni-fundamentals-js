@@ -375,3 +375,171 @@
 // '15'
 // ]
 //     )
+
+
+// interesting observation in the if hasOwnProperty statement:
+// travelSchedule.country = town creates a key named country >> {country: 'Sofia'}
+// travelSchedule[country] = town uses up the var stored at country >> { Bulgaria: 'Sofia', France: 'Paris', Albania: 'Tirana' }
+
+// 42/100
+// function travelTime(input){
+    
+//     // store town/cost objects
+//     // take the cheapest offer by town
+//     // make an array of country/town objects
+//     let towns = {};
+//     let countries = {};
+
+//     input.forEach(element => {
+//         let [country, town, cost] = element.split(' > ');
+
+//         // towns
+//         if(!towns.hasOwnProperty(town)){
+//             towns[town] = Number(cost);
+//         } else {
+//             let currentCost = Number(cost);
+//             let townInObject = Object.keys(towns)[0];
+//             if(Number(towns[townInObject]) > Number(currentCost)){
+//                 towns[townInObject] = currentCost;
+//             }
+//         }
+        
+//         // countries
+//         if(!countries.hasOwnProperty(country)){
+//             countries[country] = [town];
+//         } else {
+//             if(!countries[country].includes(town)){
+//                 countries[country].push(town);
+//             }  
+//         }
+
+//     });
+
+
+//     let sortedCountries = Object.keys(countries).sort((a,b) => a.localeCompare(b))
+    
+
+//     sortedCountries.forEach(c => {
+//         if(Object.keys(countries[c]).length > 1){
+//             var str = ''
+//             let currentTowns = countries[c];
+//             let unsortedTowns = {};
+//             currentTowns.forEach(e=>{
+//                 unsortedTowns[e] = towns[e]
+//             })
+//             let sortedTownsArr = Object.keys(unsortedTowns).sort((a,b)=> Number(unsortedTowns[a]) - Number(unsortedTowns[b]));
+
+            
+//             // sortedTowns.forEach(t => {
+//             //     let cost = towns[t];
+
+//             //     str += ' ' + t + ' -> ' + cost;
+//             // });
+//             for (let t = 0; t < sortedTownsArr.length; t++){
+//                 let cost = unsortedTowns[sortedTownsArr[t]];
+//                 str += sortedTownsArr[t] + ' -> ' + cost + ' ';
+//             }
+//             console.log(c,'->',str + ' ');
+//         } else {
+//             countries[c].forEach(t => {
+//                 let cost = towns[t];
+//                 console.log(c, '->', t, '->', cost);
+                
+//             });
+//         }
+        
+//     });
+    
+// }
+
+// you can create objects by easy means of: 
+// if(!obj.hasOwnProperty(key))
+// obj[key] = value
+// you can even make objects be keys of objects
+// if(!obj[key].hasOwnProperty(key2))
+// obj[key][key2] = value
+
+// function travelTime(input){
+//     let destinations = {};
+
+//     input.forEach((el)=> {
+//         let [country, town, cost] = el.split(" > ");
+//         cost = Number(cost);
+//         if (!destinations.hasOwnProperty(country)) {
+//             destinations[country] = {};
+//         }
+        
+//         if (!destinations[country].hasOwnProperty(town)) {
+//             destinations[country][town] = cost;
+//         } else {
+//             let prevCost = destinations[country][town];
+//             if(prevCost>cost){
+//                 destinations[country][town] = cost;
+//             }
+//         }
+//     })
+//     let orderedCountries = Object.keys(destinations).sort((a,b) => a.localeCompare(b));
+
+//     let result = "";
+
+//     // you can use country in the for...of loop and it has a separate scope than the country in forEach
+
+//     // first loop through countries then on line 497 loop through towns sorted by cost
+//     for (let country of orderedCountries) {
+//         result += country + " -> ";
+
+//         // solving your initial buggy code -> there is separation of the list of towns divided by country in for loop cycle
+//         // crucial is the country var to be explicitly noted in the following function so that you can access destinations[country] -> town;
+//         let sortedPrices = Object.keys(destinations[country]).sort((a, b) => travelCost(a, b, destinations, country));
+
+//         // the above line has the function of:
+//         // 1) sorting the towns by comparing their values /cost/ 
+//         // 2) storing the towns in an array to use as a key to access value in console.log()
+//         for (let town of sortedPrices) {
+//             result += `${town} -> ${destinations[country][town]} `;
+//         }
+//         // newline trick
+//         result += "\n";
+//     }
+//     console.log(result);
+
+//     function travelCost(town1, town2, destination, country) {
+//         let priceO = destination[country][town1];
+//         let priceT = destination[country][town2];
+
+//         return priceO - priceT
+//     }
+// }
+
+// travelTime(
+//     // 'Bulgaria > Sofia > 25000',
+//     // 'aaa > Sofia > 1',
+//     // 'aa > Orgrimar > 0',
+//     // 'Albania > Tirana > 25000',
+//     // 'zz > Aarna > 25010',
+//     // 'Bulgaria > Lukovit > 10'
+//     [
+//         "Bulgaria > Sofia > 500",
+//         "Bulgaria > Sopot > 800",
+//         "France > Paris > 2000",
+//         "Albania > Tirana > 1000",
+//         "Bulgaria > Sofia > 200"
+//         ]
+        
+    
+//     )
+
+
+
+function arenaTier(input){
+
+}
+
+arenaTier([
+    'Peter -> BattleCry -> 400',
+    'Alex -> PowerPunch -> 300',
+    'Stefan -> Duck -> 200',
+    'Stefan -> Tiger -> 250',
+    'Ave Cesar'
+    ]
+    )
