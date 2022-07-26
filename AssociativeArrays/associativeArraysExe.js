@@ -529,17 +529,110 @@
     
 //     )
 
+// using bracket notation is not only preferable, it is the only way to create an object
+// when you use variables let name = 's' -> obj[name] = 'sss'
 
-
+// 90/100 runtime error
 function arenaTier(input){
+    
+    let gladiators = {};
 
+    for (let command of input){
+        if(command.includes('->')){
+            let [gladiator, skill, points] = command.split(' -> ');
+            points = Number(points);
+            // add gladiator
+            if (!gladiators.hasOwnProperty(gladiator)){
+                gladiators[gladiator] = {};
+            }
+            // add skill of gladiator
+            if(!gladiators[gladiator].hasOwnProperty(skill)){
+                gladiators[gladiator][skill] = points;
+            } else {
+                // if he has the skill add the updated one
+                let prevPoints = gladiators[gladiator][skill];
+                if(prevPoints < points){
+                    gladiators[gladiator][skill] = points;
+                }
+            }
+
+        } else if (command.includes('vs')){
+            let [gladiator1, gladiator2] = command.split(' vs ');
+            // if gladiators both exist
+            if(gladiators.hasOwnProperty(gladiator1) && gladiators.hasOwnProperty(gladiator2)){
+                // list of g2's skills
+                let arrOfSkills = Object.keys(gladiators[gladiator2]);
+                // which g1's skills are matching with g2's skills
+                arrOfSkills.filter((e) => gladiators[gladiator1].hasOwnProperty(e));
+                // if there is matching
+                if(arrOfSkills.length !== 0){
+                    // check each
+                    arrOfSkills.forEach(element => {
+                        // if skills is better
+                        if(Number(gladiators[gladiator1][element]) > Number(gladiators[gladiator2][element])){
+                            delete gladiators[gladiator2];
+                        } else if (Number(gladiators[gladiator1][element]) < Number(gladiators[gladiator2][element])){
+                            delete gladiators[gladiator1];
+                        }
+                    });
+                } else{
+                    continue;
+                }
+            }
+        }
+
+    }
+    
+        let gladTotalScore = {}
+        
+        // return total score
+        for (gladName in gladiators){
+            
+            let arrOfGladSkills = Object.keys(gladiators[gladName]);
+            let sumOfGladSkill = 0;
+            arrOfGladSkills.forEach(technique => {
+                sumOfGladSkill+= Number(gladiators[gladName][technique]);
+            });
+            if(!gladTotalScore.hasOwnProperty(gladName)){
+                gladTotalScore[gladName] = sumOfGladSkill;
+            }
+
+        }
+
+        // sort by total score
+        let arrOfGladTotalScore = Object.keys(gladTotalScore).sort((a,b) => gladTotalScore[b] - gladTotalScore[a]);
+        let arrOfGladAlphabetical = arrOfGladTotalScore.sort((a,b) => orderedScore(a,b));
+
+        
+        for (let glad of arrOfGladAlphabetical){
+            console.log(`${glad}: ${gladTotalScore[glad]} skill`);
+
+            let arrOfGladSkil = Object.keys(gladiators[glad]).sort((a,b) => gladiators[glad][b] - gladiators[glad][a]);    
+            let arrOfGladSkilAlpha = arrOfGladSkil.sort((a,b) => orderedScor(a,b));
+            arrOfGladSkilAlpha.forEach(element => {
+                console.log(`- ${element} <!> ${gladiators[glad][element]}`);
+            });
+            function orderedScor(a,b){
+                if (gladiators[glad][a] === gladiators[glad][b]){
+                    return a.localeCompare(b);
+                }
+            }
+        }
+
+        // order alphabetically if scores are equal
+        function orderedScore(a,b){
+            if (gladTotalScore[a] === gladTotalScore[b]){
+                return a.localeCompare(b);
+            }
+        }
 }
 
 arenaTier([
-    'Peter -> BattleCry -> 400',
-    'Alex -> PowerPunch -> 300',
-    'Stefan -> Duck -> 200',
-    'Stefan -> Tiger -> 250',
-    'Ave Cesar'
+    'Pesho -> BattleCry -> 400',
+'Gosho -> PowerPunch -> 300',
+'Stamat -> Duck -> 200',
+'Stamat -> Tiger -> 250',
+'Ave Cesar'
     ]
+    
     )
