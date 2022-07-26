@@ -533,106 +533,247 @@
 // when you use variables let name = 's' -> obj[name] = 'sss'
 
 // 90/100 runtime error
-function arenaTier(input){
+// function arenaTier(input){
     
-    let gladiators = {};
+//     let gladiators = {};
 
-    for (let command of input){
-        if(command.includes('->')){
-            let [gladiator, skill, points] = command.split(' -> ');
-            points = Number(points);
-            // add gladiator
-            if (!gladiators.hasOwnProperty(gladiator)){
-                gladiators[gladiator] = {};
-            }
-            // add skill of gladiator
-            if(!gladiators[gladiator].hasOwnProperty(skill)){
-                gladiators[gladiator][skill] = points;
-            } else {
-                // if he has the skill add the updated one
-                let prevPoints = gladiators[gladiator][skill];
-                if(prevPoints < points){
-                    gladiators[gladiator][skill] = points;
-                }
-            }
+//     for (let command of input){
+//         if(command.includes('->')){
+//             let [gladiator, skill, points] = command.split(' -> ');
+//             points = Number(points);
+//             // add gladiator
+//             if (!gladiators.hasOwnProperty(gladiator)){
+//                 gladiators[gladiator] = {};
+//             }
+//             // add skill of gladiator
+//             if(!gladiators[gladiator].hasOwnProperty(skill)){
+//                 gladiators[gladiator][skill] = points;
+//             } else {
+//                 // if he has the skill add the updated one
+//                 let prevPoints = gladiators[gladiator][skill];
+//                 if(prevPoints < points){
+//                     gladiators[gladiator][skill] = points;
+//                 }
+//             }
 
-        } else if (command.includes('vs')){
-            let [gladiator1, gladiator2] = command.split(' vs ');
-            // if gladiators both exist
-            if(gladiators.hasOwnProperty(gladiator1) && gladiators.hasOwnProperty(gladiator2)){
-                // list of g2's skills
-                let arrOfSkills = Object.keys(gladiators[gladiator2]);
-                // which g1's skills are matching with g2's skills
-                arrOfSkills.filter((e) => gladiators[gladiator1].hasOwnProperty(e));
-                // if there is matching
-                if(arrOfSkills.length !== 0){
-                    // check each
-                    arrOfSkills.forEach(element => {
-                        // if skills is better
-                        if(Number(gladiators[gladiator1][element]) > Number(gladiators[gladiator2][element])){
-                            delete gladiators[gladiator2];
-                        } else if (Number(gladiators[gladiator1][element]) < Number(gladiators[gladiator2][element])){
-                            delete gladiators[gladiator1];
-                        }
-                    });
-                } else{
-                    continue;
-                }
-            }
-        }
+//         } else if (command.includes('vs')){
+//             let [gladiator1, gladiator2] = command.split(' vs ');
+//             // if gladiators both exist
+//             if(gladiators.hasOwnProperty(gladiator1) && gladiators.hasOwnProperty(gladiator2)){
+//                 // list of g2's skills
+//                 let arrOfSkills = Object.keys(gladiators[gladiator2]);
+//                 // which g1's skills are matching with g2's skills
+//                 arrOfSkills.filter((e) => gladiators[gladiator1].hasOwnProperty(e));
+//                 // if there is matching
+//                 if(arrOfSkills.length !== 0){
+//                     // check each
+//                     arrOfSkills.forEach(element => {
+//                         // if skills is better
+//                         if(Number(gladiators[gladiator1][element]) > Number(gladiators[gladiator2][element])){
+//                             delete gladiators[gladiator2];
+//                         } else if (Number(gladiators[gladiator1][element]) < Number(gladiators[gladiator2][element])){
+//                             delete gladiators[gladiator1];
+//                         }
+//                     });
+//                 } else{
+//                     continue;
+//                 }
+//             }
+//         }
 
-    }
+//     }
     
-        let gladTotalScore = {}
+//         let gladTotalScore = {}
         
-        // return total score
-        for (gladName in gladiators){
+//         // return total score
+//         for (gladName in gladiators){
             
-            let arrOfGladSkills = Object.keys(gladiators[gladName]);
-            let sumOfGladSkill = 0;
-            arrOfGladSkills.forEach(technique => {
-                sumOfGladSkill+= Number(gladiators[gladName][technique]);
-            });
-            if(!gladTotalScore.hasOwnProperty(gladName)){
-                gladTotalScore[gladName] = sumOfGladSkill;
-            }
+//             let arrOfGladSkills = Object.keys(gladiators[gladName]);
+//             let sumOfGladSkill = 0;
+//             arrOfGladSkills.forEach(technique => {
+//                 sumOfGladSkill+= Number(gladiators[gladName][technique]);
+//             });
+//             if(!gladTotalScore.hasOwnProperty(gladName)){
+//                 gladTotalScore[gladName] = sumOfGladSkill;
+//             }
 
-        }
+//         }
 
-        // sort by total score
-        let arrOfGladTotalScore = Object.keys(gladTotalScore).sort((a,b) => gladTotalScore[b] - gladTotalScore[a]);
-        let arrOfGladAlphabetical = arrOfGladTotalScore.sort((a,b) => orderedScore(a,b));
+//         // sort by total score
+//         let arrOfGladTotalScore = Object.keys(gladTotalScore).sort((a,b) => gladTotalScore[b] - gladTotalScore[a]);
+//         let arrOfGladAlphabetical = arrOfGladTotalScore.sort((a,b) => orderedScore(a,b));
 
         
-        for (let glad of arrOfGladAlphabetical){
-            console.log(`${glad}: ${gladTotalScore[glad]} skill`);
+//         for (let glad of arrOfGladAlphabetical){
+//             console.log(`${glad}: ${gladTotalScore[glad]} skill`);
 
-            let arrOfGladSkil = Object.keys(gladiators[glad]).sort((a,b) => gladiators[glad][b] - gladiators[glad][a]);    
-            let arrOfGladSkilAlpha = arrOfGladSkil.sort((a,b) => orderedScor(a,b));
-            arrOfGladSkilAlpha.forEach(element => {
-                console.log(`- ${element} <!> ${gladiators[glad][element]}`);
-            });
-            function orderedScor(a,b){
-                if (gladiators[glad][a] === gladiators[glad][b]){
-                    return a.localeCompare(b);
-                }
-            }
-        }
+//             let arrOfGladSkil = Object.keys(gladiators[glad]).sort((a,b) => gladiators[glad][b] - gladiators[glad][a]);    
+//             let arrOfGladSkilAlpha = arrOfGladSkil.sort((a,b) => orderedScor(a,b));
+//             arrOfGladSkilAlpha.forEach(element => {
+//                 console.log(`- ${element} <!> ${gladiators[glad][element]}`);
+//             });
+//             function orderedScor(a,b){
+//                 if (gladiators[glad][a] === gladiators[glad][b]){
+//                     return a.localeCompare(b);
+//                 }
+//             }
+//         }
 
-        // order alphabetically if scores are equal
-        function orderedScore(a,b){
-            if (gladTotalScore[a] === gladTotalScore[b]){
-                return a.localeCompare(b);
-            }
-        }
-}
+//         // order alphabetically if scores are equal
+//         function orderedScore(a,b){
+//             if (gladTotalScore[a] === gladTotalScore[b]){
+//                 return a.localeCompare(b);
+//             }
+//         }
+// }
 
-arenaTier([
-    'Pesho -> BattleCry -> 400',
-'Gosho -> PowerPunch -> 300',
-'Stamat -> Duck -> 200',
-'Stamat -> Tiger -> 250',
-'Ave Cesar'
-    ]
+// arenaTier([
+//     'Pesho -> BattleCry -> 400',
+// 'Gosho -> PowerPunch -> 300',
+// 'Stamat -> Duck -> 200',
+// 'Stamat -> Tiger -> 250',
+// 'Ave Cesar'
+//     ]
     
-    )
+//     )
+
+
+
+// function legendaryFarming(input){
+//     let farmed = {};
+//     let arrOfItems = input.split(' ');
+//     let obtained = false;
+//     let legendaryItem;
+//     let arrOfKeyMaterials = new Set();
+//     for (let i = 0; i < arrOfItems.length; i=i+2){
+//         if (!farmed.hasOwnProperty(arrOfItems[i+1])){
+//             farmed[arrOfItems[i]] = arrOfItems[i+1].toLowerCase();
+//         } else {
+//             let tmp = Number(farmed[arrOfItems[i]]);
+//             tmp += Number(arrOfItems[i]);
+//             farmed
+//         }
+        
+//         if (arrOfItems[i+1].toLowerCase() === 'fragments'){
+//             arrOfKeyMaterials.add(arrOfItems[i+1].toLowerCase())
+//         }
+//         if (arrOfItems[i+1].toLowerCase() === 'motes'){
+//             arrOfKeyMaterials.add(arrOfItems[i+1].toLowerCase())
+//         }
+//         if (arrOfItems[i+1].toLowerCase() === 'shards'){
+//             arrOfKeyMaterials.add(arrOfItems[i+1].toLowerCase())
+//         }
+//     }
+    
+//     for (let e in farmed){
+//         if(farmed[e] === 'fragments'){
+//             if(Number(e) > 250){
+//                 obtained = true;
+//                 legendaryItem = "Valanyr";
+//                 break;
+//             }
+//             if(obtained){
+//                 break;
+//             }
+//         } else if(farmed[e] === 'motes'){
+//             if(Number(e) > 250){
+//                 obtained = true;
+//                 legendaryItem = "Dragonwrath";
+//                 break;
+//             }
+//             if(obtained){
+//                 break;
+//             }
+//         } else if(farmed[e] === 'shards'){
+//             if(Number(e) > 250){
+//                 obtained = true;
+//                 legendaryItem = "Shadowmourne";
+//                 break;
+//             }
+//             if(obtained){
+//                 break;
+//             }
+//         }
+//     }
+   
+//     if(legendaryItem === 'Shadowmourne'){
+//         if(arrOfKeyMaterials.has('shards')){
+//             arrOfKeyMaterials.delete('shards')
+//         }
+//     } else if(legendaryItem === 'Valanyr'){
+//         if(arrOfKeyMaterials.has('fragments')){
+//             arrOfKeyMaterials.delete('fragments')
+//         }
+//     } else if(legendaryItem === 'Dragonwrath'){
+//         if(arrOfKeyMaterials.has('motes')){
+//             arrOfKeyMaterials.delete('motes')
+//         }
+//     }
+
+//     if(obtained){
+//         console.log(`${legendaryItem} obtained!`);
+//     }
+//     arrOfKeyMaterials.forEach(element => {
+        
+//     });
+    
+// }
+
+
+// better solution
+// function legendaryFarming(str) {
+//     let input = str.toLowerCase().split(' ');
+//     let legendary = { fragments: 0, shards: 0, motes: 0 };
+//     let junk = {};
+//     let hasToBreak = false;
+//     while (!hasToBreak && input.length > 0) {
+//         let quantity = +input.shift();
+//         let material = input.shift();
+//         switch (material) {
+//             case 'shards':
+//                 legendary[material] += quantity;
+//                 if (legendary[material] >= 250) {
+//                     console.log(`Shadowmourne obtained!`);
+//                     legendary[material] -= 250;
+//                     hasToBreak = true;
+//                 }
+//                 break;
+//             case 'fragments':
+//                 legendary[material] += quantity;
+//                 if (legendary[material] >= 250) {
+//                     console.log(`Valanyr obtained!`);
+//                     legendary[material] -= 250;
+//                     hasToBreak = true;
+//                 }
+//                 break;
+//             case 'motes':
+//                 legendary[material] += quantity;
+//                 if (legendary[material] >= 250) {
+//                     console.log(`Dragonwrath obtained!`);
+//                     legendary[material] -= 250;
+//                     hasToBreak = true;
+//                 }
+//                 break;
+//             default:
+//                 if (!junk.hasOwnProperty(material)) {
+//                     junk[material] = 0;
+//                 }
+//                 junk[material] += quantity;
+//                 break;
+//         }
+//     }
+//     // ingenious sort first x || if equal y - .sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+//     let legendItems = Object.entries(legendary)
+//         .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+//         .forEach((item) => {
+//             console.log(`${item[0]}: ${item[1]}`);
+//         });
+
+//     let junkItems = Object.entries(junk)
+//         .sort((a, b) => a[0].localeCompare(b[0]))
+//         .forEach((item) => {
+//             console.log(`${item[0]}: ${item[1]}`);
+//         });
+// }
+
+// legendaryFarming('3 Motes 5 stones 5 Shards 6 leathers 255 fragments 7 Shards');
