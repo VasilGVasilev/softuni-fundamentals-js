@@ -52,3 +52,17 @@
 // countStringOccur('This is a word and it also is a sentence',
 // 'is'
 // )
+
+
+// NB
+// Strings are immutable 
+// Strings can be indexed but also str.charAt(index)
+// indexOf(substr)
+// lastIndexOf(substr)
+// substring(startIndex, endIndex)
+// replace(search, replacement) /often + while(text.includes())/
+// repeat(count)
+// trim()
+// trimStart() trimEnd()
+// startsWith() endsWith()
+// padStart() padEnd()
