@@ -63,15 +63,15 @@
 // matches[0] - the match
 // matches[1], matches[2], matches[n] - the groups that the match conists of
 
-function date(input){
-    let pattern = /\b(?<day>\d{2})([-.\/])(?<month>[A-Z][a-z]{2})\2(?<year>\d{4})/g;
-    while ((validDate = pattern.exec(input)) !== null){
-        let day = validDate.groups['day'];
-        let month = validDate.groups['month'];
-        let year = validDate.groups['year'];
-        console.log(`Day: ${day}, Month: ${month}, Year: ${year}`);
-    }
-}
+// function date(input){
+//     let pattern = /\b(?<day>\d{2})([-.\/])(?<month>[A-Z][a-z]{2})\2(?<year>\d{4})/g;
+//     while ((validDate = pattern.exec(input)) !== null){
+//         let day = validDate.groups['day'];
+//         let month = validDate.groups['month'];
+//         let year = validDate.groups['year'];
+//         console.log(`Day: ${day}, Month: ${month}, Year: ${year}`);
+//     }
+// }
 
 
 
