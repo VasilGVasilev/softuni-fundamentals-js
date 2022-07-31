@@ -214,3 +214,64 @@
 // '%Maria%<Cola>|1|2.4$',
 // 'end of shift']
 //     )
+
+
+
+// function starEnigma(input){
+//     let numOfMessages = input.shift();
+//     let attackedPlanets = [];
+//     let destroyedPlanets = [];
+//     for (let el of input){
+//         let rawString = el.toLowerCase();
+//         let starCounter = 0;
+//         for (let i = 0; i < rawString.length; i++){
+//             switch (rawString[i]) {
+//                 case 's':
+//                   starCounter++;
+//                   break;
+//                 case 't':
+//                   starCounter++;
+//                   break;
+//                 case 'a':
+//                   starCounter++;
+//                   break;
+//                 case 'r':
+//                   starCounter++;
+//                   break;
+//             }
+//         }
+//         let newString = '';
+//         for (let i = 0; i < el.length; i++){
+//             newString += String.fromCharCode(el[i].charCodeAt(0) - starCounter)
+//         }
+//         let pattern = /@(?<planet>[A-Z][a-z]+)[^@\-!:>]*?:(?<population>\d+)[^@\-!:>]*?!(?<attack>[A|D])[^@\-!:>]*?![^@\-!:>]*?->(?<count>\d+)/g;
+//         let validString;
+//         while((validString = pattern.exec(newString)) !== null){
+//             let planetName = validString.groups.planet;
+//             let attackType = validString.groups.attack;
+//             if (attackType === 'D'){
+//                 destroyedPlanets.push(planetName);
+//             } else if (attackType === 'A'){
+//                 attackedPlanets.push(planetName);
+//             }
+//         }
+//     }
+//     console.log(`Attacked planets: ${attackedPlanets.length}`);
+//     let sortedA = attackedPlanets.sort((a,b)=>a.localeCompare(b));
+//     let sortedD = destroyedPlanets.sort((a,b)=>a.localeCompare(b));
+//     sortedA.forEach(element => {
+//         console.log(`-> ${element}`);
+//     });
+//     console.log(`Destroyed planets: ${destroyedPlanets.length}`);
+//     sortedD.forEach(element => {
+//         console.log(`-> ${element}`);
+//     });
+// }
+// starEnigma(['3',
+// "tt(''DGsvywgerx>6444444444%H%1B9444",
+// 'GQhrr|A977777(H(TTTT',
+// 'EHfsytsnhf?8555&I&2C9555SR'])
+
+
+
+
