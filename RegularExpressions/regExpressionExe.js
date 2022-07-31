@@ -137,6 +137,8 @@
 //             nameMap.set(name, prevDistance);
 //         }
 //     }
+//  it creates an arr of of [0] name and [1] personal result
+// ['George', '55']
 //     let sortedNames = Array.from(nameMap).sort((a,b)=>{
 //         return b[1] - a[1];
 //     })
@@ -155,3 +157,60 @@
 // 'T$o553m&6',
 // 'end of race']
 // )
+
+// 80/100
+// function softuniBarIncome(input){
+//     let totalAmount = 0;
+//     let objOfCustomers = {};
+
+//     let pattern = /%(?<name>[A-Z][a-z]+)%[^|$%.]*?<(?<product>\w+)>[^|$%\/.]*?\|(?<count>\d+)\|[^|$%.]*?(?<price>\d+(\.\d+)?)\$/g;
+//     let validCust;
+//     while((validCust = pattern.exec(input)) !== null){
+//         let validCount = Number(validCust.groups.count);
+//         let validPrice = Number(validCust.groups.price);
+
+//         let validName = validCust.groups.name;
+//         let validProduct = validCust.groups.product;
+//         let validIncome = validCount * validPrice;
+
+//         totalAmount+=validIncome;
+//         if(!objOfCustomers.hasOwnProperty(validName)){
+//             objOfCustomers[validName] = {};
+//         }
+//         if(!objOfCustomers[validName].hasOwnProperty(validProduct)){
+//             objOfCustomers[validName][validProduct] = validIncome;
+//         }
+//     }
+//     for (let key in objOfCustomers){
+//         for (let [key1,value1] of Object.entries(objOfCustomers[key])){
+//             console.log(`${key}: ${key1} - ${value1.toFixed(2)}`);
+//         } 
+//     } 
+//     console.log(`Total income: ${totalAmount.toFixed(2)}`); 
+// }
+
+
+// no need for objects
+// function softuniBarIncome(input) {
+//     let pattern = /%(?<customer>[A-Z][a-z]*)%[^|$%.]*?<(?<product>\w+)>[^|$%.]*?\|(?<count>\d+)\|[^|$%.]*?(?<price>[0-9]+(\.[0-9]+)?)\$/;
+//     let currentLine = input.shift();
+//     let totalPrice = 0;
+   
+//     while (currentLine !== 'end of shift') {
+//       let currentOrder;
+//       if ((currentOrder = pattern.exec(currentLine))) {
+//         let {customer, product, count, price} = currentOrder.groups;
+//         totalPrice += count * price;
+//         console.log(`${customer}: ${product} - ${(count * price).toFixed(2)}`);
+//       }
+//       currentLine = input.shift();
+//     }
+   
+//     console.log(`Total income: ${totalPrice.toFixed(2)}`);
+//   }
+// softuniBarIncome(
+//     ['%George%<Croissant>|2|10.3$',
+// '%Peter%<Gum>|1|1.3$',
+// '%Maria%<Cola>|1|2.4$',
+// 'end of shift']
+//     )
