@@ -275,3 +275,28 @@
 
 
 
+function netherRealms(input){
+    if(input.includes(',')){
+        input = input.split(',');
+        for (let el of input){
+            console.log(el);
+        }
+    } else{
+        let wordPattern = /(?<word>[^\d+\-*\/\.]+)/g;
+        let validWord;
+        let strWord = '';
+        let strNums = '';
+        while((validWord = wordPattern.exec(input)) !== null){
+            strWord+=validWord.groups.word;
+            strNums+=validWord.groups
+        }
+        let wordByLetters = strWord.split('');
+        let healthOfDemon = 0;
+        wordByLetters.forEach(element => {
+            healthOfDemon+=element.charCodeAt();
+        });
+        console.log(nameOfDemon);
+    }
+    
+}
+netherRealms('M3ph1st0**')
